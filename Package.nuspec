@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Volusion-PayPal</id>
+    <version>1.8.0</version>
+    <authors>Volusion, LLC</authors>
+    <owners>Volusion.com</owners>
+    <projectUrl>https://github.com/VolusionDev/PayPal-NET-SDK</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>PayPal's .net SDK 1.8.0 with one small change to the GetAccessToken method to allow target_client_id as a paramater to get access tokens on behalf of merchant</description>
+    <releaseNotes>Changes to the OAuthTokenCredential class</releaseNotes>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="7.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Source\SDK\bin\Release\net40\*.xml" target="lib\net40" />
+    <file src="Source\SDK\bin\Release\net40\*.dll" target="lib\net40" />
+    <file src="Source\SDK\bin\Release\net45\*.xml" target="lib\net45" />
+    <file src="Source\SDK\bin\Release\net45\*.dll" target="lib\net45" />
+    <file src="Source\SDK\bin\Release\net451\*.xml" target="lib\net451" />
+    <file src="Source\SDK\bin\Release\net451\*.dll" target="lib\net451" />
+  </files>  
+</package>

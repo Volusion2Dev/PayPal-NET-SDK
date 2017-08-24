@@ -138,7 +138,7 @@ namespace PayPal.Api
         /// <exception cref="PayPal.ConnectionException">Thrown if there is an issue attempting to connect to PayPal's services.</exception>
         /// <exception cref="PayPal.ConfigException">Thrown if there is an error with any informaiton provided by the <see cref="PayPal.Api.ConfigManager"/>.</exception>
         /// <exception cref="PayPal.PayPalException">Thrown for any other general exception. See inner exception for further details.</exception>
-        public string GetAccessToken()
+        public string GetAccessToken(string targetClientID = null)
         {
             // If the cached access token value is valid, then check to see if
             // it has expired.
@@ -157,7 +157,7 @@ namespace PayPal.Api
             // If the cached access token is empty or null, then generate a new token.
             if (string.IsNullOrEmpty(this.accessToken))
             {
-                this.accessToken = this.GenerateOAuthToken();
+                this.accessToken = this.GenerateOAuthToken(targetClientID);
             }
             return this.accessToken;
         }
@@ -166,10 +166,15 @@ namespace PayPal.Api
         /// Generates a new OAuth token useing the specified client credentials in the authorization request.
         /// </summary>
         /// <returns>The OAuth access token to use for making PayPal requests.</returns>
-        private string GenerateOAuthToken()
+        private string GenerateOAuthToken(string targetClientID = null)
         {
             var payload = "grant_type=client_credentials";
             var endpoint = this.GetEndpointOverride();
+
+            if (targetClientID != null)
+            {
+                payload += "&target_client_id=" + targetClientID;
+            }
 
             var apiContext = new APIContext
             {
