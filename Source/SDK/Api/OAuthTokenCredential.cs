@@ -171,7 +171,7 @@ namespace PayPal.Api
             var payload = "grant_type=client_credentials";
             var endpoint = this.GetEndpointOverride();
 
-            if (targetClientID != null)
+            if (string.IsNullOrEmpty(targetClientID))
             {
                 payload += "&target_client_id=" + targetClientID;
             }
